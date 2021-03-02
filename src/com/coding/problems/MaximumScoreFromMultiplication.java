@@ -1,6 +1,5 @@
 package com.coding.problems;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,6 +23,32 @@ import java.util.stream.Collectors;
  * The total score is 9 + 4 + 1 = 14.
  */
 public class MaximumScoreFromMultiplication {
+    int n, m;
+    int[] nums, multipliers;
+    Integer[][] memo;
+
+    public int maximumScoreDPApproach(int[] nums, int[] multipliers) {
+        n = nums.length;
+        m = multipliers.length;
+        this.nums = nums;
+        this.multipliers = multipliers;
+        this.memo = new Integer[m][m];
+        return dp(0, 0);
+    }
+
+    // Bottom up tabulation
+    private int dp(int l, int i) {
+        if (i == m) return 0; // Picked enough m elements
+
+        if (memo[l][i] != null) return memo[l][i];
+
+        int prevLeft = dp(l + 1, i + 1);
+        int pickLeft = prevLeft + nums[l] * multipliers[i]; // Pick the left side
+        int prevRight = dp(l, i + 1);
+        int pickRight = prevRight + nums[n - (i - l) - 1] * multipliers[i]; // Pick the right side
+        memo[l][i] = Math.max(pickLeft, pickRight);
+        return memo[l][i];
+    }
 
     public int maximumScoreBruteForce(int[] nums, int[] multipliers) {
         int maxScore = 0;
@@ -53,4 +78,35 @@ public class MaximumScoreFromMultiplication {
 
         return maxScore;
     }
+
+    public int maximumScoreBruteForce2(int[] nums, int[] multipliers) {
+        int n = nums.length;
+        int m = multipliers.length;
+        int[][] dp = new int[m + 1][m + 1];
+        for (int z = m - 1; z >= 0; --z) { // z = operations
+            for (int i = 0; i <= z; ++i) {
+                int y = z - i; // number of rights removed
+                int j = n - y - 1; // Index of the remaining right value
+                dp[i][y] = Math.max(dp[i + 1][y] + nums[i] * multipliers[z], dp[i][y + 1] + nums[j] * multipliers[z]);
+            }
+        }
+        return dp[0][0];
+    }
+
+
+    public int solve(int[] nums, int[] multipliers) {
+        if (multipliers.length > 30)
+            throw new IllegalArgumentException("Too many multipliers (max 30): " + multipliers.length);
+        final int end = 1 << multipliers.length;
+        int maxSum = Integer.MIN_VALUE;
+        for (int bits = 0; bits < end; bits++) {
+            int sum = 0, idx0 = 0, idx1 = nums.length;
+            for (int i = 0; i < multipliers.length; i++)
+                sum += multipliers[i] * ((bits & (1 << i)) == 0 ? nums[idx0++] : nums[--idx1]);
+            maxSum = Math.max(maxSum, sum);
+        }
+        return maxSum;
+    }
+
+
 }

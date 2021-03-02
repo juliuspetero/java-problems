@@ -136,4 +136,146 @@ public class LongestPalindrome {
 
         return palindrome;
     }
+
+    /**
+     * You are given two strings, word1 and word2. You want to construct a string in the following manner:
+     * <p>
+     * Choose some non-empty subsequence subsequence1 from word1.
+     * Choose some non-empty subsequence subsequence2 from word2.
+     * Concatenate the subsequences: subsequence1 + subsequence2, to make the string.
+     * Return the length of the longest palindrome that can be constructed in the described manner. If no palindromes can be constructed, return 0.
+     * <p>
+     * A subsequence of a string s is a string that can be made by deleting some (possibly none) characters from s without changing the order of the remaining characters.
+     * <p>
+     * A palindrome is a string that reads the same forward as well as backward.
+     *
+     * @param word1
+     * @param word2
+     * @return
+     */
+    public int longestPalindrome(String word1, String word2) {
+        String w = word1 + word2;
+        int n = w.length();
+        int[][] len = new int[n][n];
+        for (int i = 0; i < n; ++i) {
+            len[i][i] = 1;
+        }
+        for (int z = 1; z < n; ++z) {
+            for (int i = 0; i + z < n; ++i) {
+                int j = i + z;
+                len[i][j] = Math.max(len[i + 1][j], len[i][j - 1]);
+                if (w.charAt(i) == w.charAt(j)) {
+                    len[i][j] = Math.max(len[i][j], len[i + 1][j - 1] + 2);
+                }
+            }
+        }
+        int ans = 0;
+        for (int i = 0; i < word1.length(); ++i) {
+            for (int j = 0; j < word2.length(); ++j) {
+                if (word1.charAt(i) != word2.charAt(j))
+                    continue;
+                ans = Math.max(ans, len[i + 1][word1.length() + j - 1] + 2);
+            }
+        }
+        return ans;
+    }
+
+    public int longestPalindrome2(String word1, String word2) {
+        String m = word1 + word2;
+        return lps(m, word1, word2);
+    }
+
+    int lps(String m, String word1, String word2) {
+        int n = m.length();
+
+        int[][] dp = new int[n][n];
+        for (int l = 0; l < n; l++) {
+            for (int i = 0; i + l < n; i++) {
+                int j = i + l;
+                if (l == 0) {
+                    dp[i][i] = 1;
+                    continue;
+                }
+                if (m.charAt(i) == m.charAt(j)) {
+                    dp[i][j] = 2 + dp[i + 1][j - 1];
+
+                } else {
+                    dp[i][j] = Math.max(dp[i + 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+
+        int max = 0;
+        for (int i = 0; i < word1.length(); i++) {
+            for (int j = word2.length() - 1; j >= 0; j--) {
+                if (word1.charAt(i) == word2.charAt(j)) {
+                    max = Math.max(max, dp[i][word1.length() + j]);
+                }
+            }
+        }
+        return max;
+
+    }
+
+    /**
+     * Given an integer x, return true if x is palindrome integer.
+     * <p>
+     * An integer is a palindrome when it reads the same backward as forward. For example, 121 is palindrome while 123 is not.
+     *
+     * @param x
+     * @return
+     */
+    public boolean isPalindrome(int x) {
+        String numberString = Integer.toString(x);
+        String reversedString = new StringBuilder(numberString).reverse().toString();
+        return numberString.equals(reversedString);
+    }
+
+    /**
+     * Longest palindrome
+     */
+
+    public String getLongestPalindrome(String s) {
+        int strLength = s.length();
+        String longestPalindromeSubstring = "";
+
+        // 1. The table has all values as false
+        boolean[][] table = new boolean[strLength][strLength];
+
+        // 2. A substring of length = 1 is a palindrome
+        for (int i = 0; i < strLength; i++) {
+            int j = i; // End index j
+            table[i][j] = true;
+            if (s.substring(i, j + 1).length() > longestPalindromeSubstring.length()) {
+                longestPalindromeSubstring = s.substring(i, j + 1);
+            }
+        }
+
+        // 3. A substring of length = 2 is a palindrome when both characters are the same
+        for (int i = 0; i < strLength - 1; i++) {
+            int j = i + 1; // j is the end index of the substring
+            if (s.charAt(i) == s.charAt(j)) {
+                table[i][j] = true;
+                if (s.substring(i, j + 1).length() > longestPalindromeSubstring.length()) {
+                    longestPalindromeSubstring = s.substring(i, j + 1);
+                }
+            }
+        }
+
+        // 4. A substring of length > 3 is a palindrome when start and end characters are the same and
+        // the inner substring is also a palindrome
+        for (int k = 2; k < strLength; k++) {
+            for (int i = 0; i < strLength - k; i++) {
+                int j = i + k; // End index of the substring
+
+                if(s.charAt(i) == s.charAt(j) && table[i + 1][j - 1]){
+                    table[i][j] = true;
+                    if (s.substring(i, j + 1).length() > longestPalindromeSubstring.length()) {
+                        longestPalindromeSubstring = s.substring(i, j + 1);
+                    }
+                }
+            }
+        }
+        return longestPalindromeSubstring;
+    }
 }

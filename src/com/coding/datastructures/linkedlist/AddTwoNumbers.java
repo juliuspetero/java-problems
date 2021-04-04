@@ -1,4 +1,4 @@
-package com.coding.problems;
+package com.coding.datastructures.linkedlist;
 
 
 import java.math.BigInteger;

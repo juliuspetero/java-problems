@@ -1,4 +1,4 @@
-package com.coding.problems;
+package com.coding.dynamicprogramming;
 
 public class FibonacciDynamicProgramming {
 

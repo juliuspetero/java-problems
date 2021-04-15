@@ -1,14 +1,14 @@
 package com.coding;
 
-import com.coding.dynamicprogramming.KnapsackProblem;
-
-import java.util.Arrays;
+import com.coding.problems.WaterContainer;
 
 public class Main {
 
-    public static void main(String args[]) {
-        KnapsackProblem knapsackProblem = new KnapsackProblem();
-        System.out.println(Arrays.toString(knapsackProblem.getKnapsackValues(new int[]{1, 2, 5, 6}, new int[]{2, 3, 4, 5}, 8)));
+    public static void main(String[] args) {
+        WaterContainer waterContainer = new WaterContainer();
+        int[] height = new int[]{1, 8, 6, 2, 5, 4, 8, 3, 7};
+        System.out.println(waterContainer.maxArea2(height));
+
     }
 }
 

@@ -1,13 +1,14 @@
 package com.coding;
 
-import com.coding.problems.WaterContainer;
+import com.coding.dynamicprogramming.BinarySearch;
+import com.coding.dynamicprogramming.MaximumSubArray;
 
 public class Main {
 
     public static void main(String[] args) {
-        WaterContainer waterContainer = new WaterContainer();
-        int[] height = new int[]{1, 8, 6, 2, 5, 4, 8, 3, 7};
-        System.out.println(waterContainer.maxArea2(height));
+        MaximumSubArray maximumSubarray = new MaximumSubArray();
+        System.out.println(maximumSubarray.maxSubArrayBigON(new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4}));
+//        System.out.println(maximumSubarray.maxSubArrayBigON(new int[]{-1}));
 
     }
 }

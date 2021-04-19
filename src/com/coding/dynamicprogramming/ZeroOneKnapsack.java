@@ -20,16 +20,17 @@ public class ZeroOneKnapsack {
 
     public int knapsack(int W, int[] wt, int[] val, int n) {
         int maxValue;
-        // 0 items or 0 weight
+        // 0 items or 0 weight Base case 1
         if (n == 0 || W == 0) {
             maxValue = 0;
 
-            // The nth item has weight greater than the knapsack capacity W
+            // The nth item has weight greater than the knapsack capacity W Base case 2
         } else if (wt[n - 1] > W) {
             maxValue = knapsack(W, wt, val, n - 1);
-
             // Return the maximum value whether to include n or not
         } else {
+
+            // Optimization part
             int valueWithNIncluded = val[n - 1] + knapsack(W - wt[n - 1], wt, val, n - 1);
             int valueWithNExcluded = knapsack(W, wt, val, n - 1);
             maxValue = Math.max(valueWithNIncluded, valueWithNExcluded);

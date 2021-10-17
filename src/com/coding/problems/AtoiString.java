@@ -18,7 +18,7 @@ package com.coding.problems;
  */
 public class AtoiString {
 
-    public int myAtoi(String s) {
+    public int myAtoi(String s) { 
         s = s.trim();
 
         if (s.isEmpty()) {

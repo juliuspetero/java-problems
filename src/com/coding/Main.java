@@ -1,18 +1,13 @@
 package com.coding;
 
-import com.coding.dynamicprogramming.BinarySearch;
-import com.coding.dynamicprogramming.MaximumSubArray;
-import com.coding.problems.LetterCombinations;
 
-import java.util.Arrays;
+import com.coding.dynamicprogramming.FibonacciDynamicProgramming;
 
 public class Main {
 
     public static void main(String[] args) {
-        LetterCombinations letterCombinations = new LetterCombinations();
-
-        System.out.println(letterCombinations.letterCombinations("23"));
-
+        int number = FibonacciDynamicProgramming.calculateFibonacciNumber(5);
+        System.out.println(number);
     }
 }
 

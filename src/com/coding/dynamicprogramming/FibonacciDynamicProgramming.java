@@ -2,7 +2,13 @@ package com.coding.dynamicprogramming;
 
 public class FibonacciDynamicProgramming {
 
-    public int calculateFibonacciNumber(int n) {
+    /**
+     * Recursive approach to fibonacci
+     *
+     * @param n nth fibonacci
+     * @return fibonacci number
+     */
+    public static int calculateFibonacciNumber(int n) {
         if (n < 2)
             return n;
         int previousFibo1 = calculateFibonacciNumber(n - 1);
@@ -18,13 +24,13 @@ public class FibonacciDynamicProgramming {
      * @param n
      * @return
      */
-    public int calculateFibonacciNumberUsingDP1(int n) {
+    public static int calculateFibonacciNumberUsingDP1(int n) {
         int[] memory = new int[n + 1];
         int fiboNumber = calculateFibonacciNumberRecursively(memory, n);
         return fiboNumber;
     }
 
-    private int calculateFibonacciNumberRecursively(int[] memory, int n) {
+    private static int calculateFibonacciNumberRecursively(int[] memory, int n) {
         if (n < 2) {
             return n;
         }
@@ -47,7 +53,7 @@ public class FibonacciDynamicProgramming {
         array[1] = 1;
 
         // Fill the array up to the nth value
-        for(int i = 2; i <= n; i++){
+        for (int i = 2; i <= n; i++) {
             array[i] = array[i - 1] + array[i - 2];
         }
 

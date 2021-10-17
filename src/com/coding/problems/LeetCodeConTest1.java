@@ -1,7 +1,5 @@
 package com.coding.problems;
 
-import org.omg.PortableInterceptor.INACTIVE;
-
 public class LeetCodeConTest1 {
     public String mergeAlternately(String word1, String word2) {
         int l1 = word1.length();
@@ -12,23 +10,23 @@ public class LeetCodeConTest1 {
 
         StringBuilder builder = new StringBuilder();
 
-        if(l1 <= l2){
-            for(int i = 0; i < l1; i++){
+        if (l1 <= l2) {
+            for (int i = 0; i < l1; i++) {
                 builder.append(arr1[i]);
                 builder.append(arr2[i]);
             }
 
-            for(int i = l1; i < l2; i++){
+            for (int i = l1; i < l2; i++) {
                 builder.append(arr2[i]);
             }
 
-        }else{
-            for(int i = 0; i < l2; i++){
+        } else {
+            for (int i = 0; i < l2; i++) {
                 builder.append(arr2[i]);
                 builder.append(arr1[i]);
             }
 
-            for(int i = l2; i < l1; i++){
+            for (int i = l2; i < l1; i++) {
                 builder.append(arr1[i]);
             }
         }
@@ -41,12 +39,12 @@ public class LeetCodeConTest1 {
         int length = boxes.length();
         int[] operations = new int[length];
 
-        for(int i = 0; i < length; i++){
+        for (int i = 0; i < length; i++) {
 
             int number = 0;
-            for(int j = 0; j < length; j++){
-                if(arr[j].equals("1")){
-                   number = number + Math.abs(i - j);
+            for (int j = 0; j < length; j++) {
+                if (arr[j].equals("1")) {
+                    number = number + Math.abs(i - j);
                 }
             }
             operations[i] = number;
@@ -60,15 +58,15 @@ public class LeetCodeConTest1 {
         int maxScore = 0;
 
 
-        if( n == m){
-            for (int i = n; i > -1; i--){
+        if (n == m) {
+            for (int i = n; i > -1; i--) {
                 int score = multipliers[i] * nums[i];
                 maxScore = maxScore + score;
 
             }
-        }else{
-            for(int i = 0; i < n; i++ ){
-                if(i > m -1){
+        } else {
+            for (int i = 0; i < n; i++) {
+                if (i > m - 1) {
                     break;
                 }
                 int score = multipliers[i] * nums[i];

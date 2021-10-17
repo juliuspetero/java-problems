@@ -1,12 +1,12 @@
 package com.coding;
 
 
-import com.coding.dynamicprogramming.FibonacciDynamicProgramming;
+import com.coding.hackerrank.RepeatedString;
 
 public class Main {
 
     public static void main(String[] args) {
-        int number = FibonacciDynamicProgramming.calculateFibonacciNumber(5);
+        long number =  RepeatedString.repeatedString("a", 1000000000000L);
         System.out.println(number);
     }
 }

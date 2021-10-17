@@ -57,8 +57,7 @@ public class FibonacciDynamicProgramming {
             array[i] = array[i - 1] + array[i - 2];
         }
 
-        int fiboNumber = array[n];
-        return fiboNumber;
+        return array[n];
     }
 
 

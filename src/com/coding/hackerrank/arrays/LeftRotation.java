@@ -1,10 +1,13 @@
 package com.coding.hackerrank.arrays;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LeftRotation {
 
+    // Bruteforce approach
     public static List<Integer> rotLeft(List<Integer> a, int d) {
         List<Integer> arr = new ArrayList<>(a);
         int size = a.size();
@@ -21,4 +24,44 @@ public class LeftRotation {
         }
         return arr;
     }
+
+    public static int[] rotateLeft(int[] input, int numberOfRotations) {
+        int length = input.length;
+        for (int i = 0; i < numberOfRotations; i++) {
+            int temp = input[0];
+            for (int j = 0; j < length - 1; j++) {
+                input[j] = input[j + 1];
+            }
+            input[length - 1] = temp;
+        }
+        return input;
+    }
+
+    public static List<Integer> rotLeft2(List<Integer> a, int d) {
+        int size = a.size();
+        int rotations = d;
+        if (d >= size) {
+            rotations = d % size;
+        }
+        for (int i = 0; i < rotations; i++) {
+            Integer temp = a.get(0);
+            for (int j = 0; j < size - 1; j++) {
+                a.set(j, a.get(j + 1));
+            }
+            a.set(size - 1, temp);
+        }
+        return a;
+    }
+
+    public static List<Integer> rotLeft3(List<Integer> a, int d) {
+        int size = a.size();
+        int mod = d % size;
+        int[] arr = a.stream().mapToInt(Integer::intValue).toArray();
+        int[] head = Arrays.copyOfRange(arr, 0, mod);
+        int[] tail = Arrays.copyOfRange(arr, mod, size);
+        List<Integer> result = Arrays.stream(tail).boxed().collect(Collectors.toList());
+        result.addAll(Arrays.stream(head).boxed().collect(Collectors.toList()));
+        return result;
+    }
+
 }

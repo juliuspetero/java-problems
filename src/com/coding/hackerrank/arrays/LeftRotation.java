@@ -5,6 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+/**
+ * int[] arr2 = LeftRotation.rotateLeft(new int[]{1, 2, 3, 4, 5}, 2);
+ * System.out.println(arr);
+ */
 public class LeftRotation {
 
     // Bruteforce approach

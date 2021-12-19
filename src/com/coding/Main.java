@@ -1,12 +1,14 @@
 package com.coding;
 
 
-import com.coding.hackerrank.hashmaps.TwoStrings;
+import com.coding.thread.ThreadDemo;
 
 public class Main {
 
     public static void main(String[] args) {
-        String result = TwoStrings.twoStrings2("hello", "world");
-        System.out.println(result);
+
+        System.out.println(new ThreadDemo().hashCode());
+        System.out.println(Integer.valueOf(11).hashCode());
+        System.out.println("Integer.valueOf(11)".hashCode());
     }
 }

@@ -37,12 +37,21 @@ public class MissingLetter {
         return array[0];
     }
 
+
+    /**
+     * char[] input = new char[]{'a', 'b', 'c', 'd', 'f'};
+     * char result = MissingLetter.findMissingLetter2(input);
+     * System.out.println(result);
+     *
+     * @param array
+     * @return
+     */
     public static char findMissingLetter2(char[] array) {
-        char expectableLetter = array[0];
+        char expectedLetter = array[0];
         for (char letter : array) {
-            if (letter != expectableLetter) break;
-            expectableLetter++;
+            if (letter != expectedLetter) break;
+            expectedLetter++;
         }
-        return expectableLetter;
+        return expectedLetter;
     }
 }
